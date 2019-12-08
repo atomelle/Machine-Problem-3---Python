@@ -1,0 +1,19 @@
+import numpy as np
+def bestfit(poly):
+    for k in range(len(poly)):
+        polyxi=np.polyfit(poly[:,0],poly[:,1],k)
+        pv=np.polyval(polyxi, poly[:,0])
+        polyyi=np.linalg.norm(poly[:,1]-pv)
+        b=[k,polyyi]
+        if k==0:
+            a=b
+        elif a[1]>=b[1]:
+            s=b[0]
+    coef=np.polyfit(poly[:,0],poly[:,1],s)
+    print('The coefficeints are: ', coef)
+    
+pairs=int(input('Enter the number of pairs of data points: '))
+cols=2
+data=list(map(int, input('Enter the values of the data points: (Put a space in between each value) ').split()))
+poly=np.array(data).reshape(pairs,cols)
+bestfit(poly)
